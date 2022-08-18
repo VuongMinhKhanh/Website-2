@@ -129,9 +129,9 @@ section, article{
     padding: 0.7rem;
 }
 
-.upperPart {
-    max-height: 80vh;
-}
+/* .upperPart {
+    height: 80vh;
+} */
 .annouce {
     width: var(--announcementBox);
 }
@@ -185,18 +185,47 @@ article h2 {
 .slideShow {
     width: 80%;
     margin: 1rem auto;
-    animation: pictureClip 1.5s 2.5s backwards;
+    /* animation: pictureClip 1.5s 2.5s backwards; */
     /* backwards: lấy css của from làm trạng thái trước animation 
     forwards: lấy css của to làm trạng thái sau animaiton*/
+    position: relative;
 }
 
+.slideShow > div:first-child {
+    margin: auto;
+    display: flex;
+    align-items: flex-start;
+    overflow: hidden;
+}
+
+.slideShow > div:first-child > div {
+    width: 100%;
+}
 .slideShow img {
     width: 100%;
+    transform: scale(0.95);
 }
 
 .slideShow img:hover {
-    transform: scale(1.1);
+    transform: scale(1);
     box-shadow: 2px 2px 4px rgb(151, 147, 147);
+}
+
+.buttons {
+    width: 60%;
+    position: absolute;
+    right: 20%;
+    left: 20%;
+    bottom: -5%;
+    justify-content: space-around;
+}
+
+.button {
+    background: pink;
+    width: 1rem;
+    padding: 0.5rem;
+    border: 1px solid lightblue;
+    border-radius: 50%;
 }
 .news {
     width: calc(100% - var(--announcementBox));
