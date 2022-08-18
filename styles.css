@@ -254,29 +254,41 @@ section {
 
 .content {
     position: relative;
-    
+    justify-content: center;
+    border: 1px solid gray;
+    margin: 0.3rem 0;
+    z-index: 1;
+    padding: 0.5rem;
 }
 
 .content:hover {
     transform: scale(1.03);
+    border: 1px solid black;
 }
 
-.content::before , .content::after {
-    background: gray;
+.content::before, .content::after {
+    background: lightblue;
     content: "";
     position: absolute;
-
+    z-index: -1;
+    transition: 1s  ;
 }
 
 .content::before {
-    width: 3rem;
-    height: 5rem;
+    width: 85%;
+    height: 102%;
 }
 
 .content::after {
-    width: 5rem;
-    height: 3rem;
-    background: orange;
+    width: 102%;
+    height: 75%;
+}
+
+.content:hover::before {
+    width: 0%;
+}
+.content:hover::after {
+    height: 0%;
 }
 
 article .content h3 a{
