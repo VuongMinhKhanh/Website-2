@@ -9,7 +9,7 @@
 :root {
     --searchBoxWidth: 90%;
     --announcementBox: 70%;
-    --toggle: .5s;
+    --toggle: .4s;
 }
 
 .hide {
@@ -57,14 +57,16 @@ body {
 }
 
 nav {
+    box-shadow: 3px 3px 3px 3px rgb(151, 147, 147);
     max-height: 10vh;
+    margin: 2rem 0.5rem;
 }
 
 nav li a {
     padding: 0.7rem;
 }
 
-.flex.between {
+.menu {
     margin: 0.5rem auto;
     padding: 1rem;
     background: #f9f6f0;
@@ -93,10 +95,6 @@ nav .flex > li a {
     padding: 0px;
 }
 
-.fa-magnifying-glass {
-    transition: 0.4s;
-}
-
 input[type=text] {
     position: fixed;
     right: calc((100% - var(--searchBoxWidth)) / 2);
@@ -105,6 +103,7 @@ input[type=text] {
     height: 2rem;
     border-radius: 4px;
     box-shadow: 2px 2px 4px rgb(151, 147, 147);
+    z-index: 1000;
 }
 
 .fa-magnifying-glass:hover {
@@ -127,16 +126,15 @@ input[type=text] {
 /* section */
 section, article{
     padding: 0.7rem;
+    align-items: flex-start !important;
 }
 
-/* .upperPart {
-    height: 80vh;
-} */
-.annouce {
+.announce {
     width: var(--announcementBox);
 }
 /* https://codepen.io/team/keyframers/pen/RwKoMmb */
 article h2 {
+    text-align: center;
     color: rgb(104, 103, 103);
     font-weight: bold;
     font-size: 1.5rem;
@@ -144,15 +142,6 @@ article h2 {
     font-style: italic;
     animation: textClip 1.5s, moveToLeft 1.5s 1s;
 }
-
-/* article h2:before {
-    position: absolute;
-    left: 0;
-    top: 1.5rem;
-    width: 50px;
-    content: '';
-    border-top: 1px solid red;
-} */
 
 @keyframes textClip {
     from {
@@ -182,10 +171,17 @@ article h2 {
         clip-path: polygon(0 0, 100% 0%, 100% 100%, 0 100%);
     }
 }
+
+section {
+    padding: 0;
+    margin: 1rem;
+    box-shadow: 3px 3px 3px 3px rgb(151, 147, 147);
+}
+
+/* Slideshow gallery */
 .slideShow {
     width: 515px;
     margin: 1rem auto;
-    animation: pictureClip 1.5s 2.5s backwards;
     /* backwards: lấy css của from làm trạng thái trước animation 
     forwards: lấy css của to làm trạng thái sau animaiton*/
     position: relative;
@@ -196,10 +192,15 @@ article h2 {
     display: flex;
     align-items: flex-start;
     overflow: hidden;
+    
 }
 
 .slideShow > div:first-child > div {
     position: relative;
+}
+
+.slideShow > div:first-child > div:first-child {
+    animation: pictureClip 2s cubic-bezier(0,-0.01,.26,.97) 2.5s backwards;
 }
 .slideShow img {
     width: 515px; /*huge problem: change px to %*/
@@ -212,7 +213,7 @@ article h2 {
 }
 
 .slideShow h3 {
-    color: lightcoral;
+    color: coral;
     background: lightskyblue;
     font-weight: bold;
     position: absolute;
@@ -221,6 +222,7 @@ article h2 {
     width: 100%;
     backdrop-filter: opacity(50%);
     z-index: 2;
+    border-radius: 0.3rem;
 }
 .buttons {
     width: 60%;
@@ -232,12 +234,64 @@ article h2 {
 }
 
 .button {
-    background: pink;
+    background: rgb(255, 221, 226);
     width: 1rem;
     padding: 0.5rem;
     border: 1px solid lightblue;
     border-radius: 50%;
 }
+
+.button:hover {
+    background: violet;
+    cursor: pointer;
+}
+/* News */
 .news {
     width: calc(100% - var(--announcementBox));
+    margin-top: 0;
+    background: lightblue;
+}
+
+.content {
+    position: relative;
+    
+}
+
+.content:hover {
+    transform: scale(1.03);
+}
+
+.content::before , .content::after {
+    background: gray;
+    content: "";
+    position: absolute;
+
+}
+
+.content::before {
+    width: 3rem;
+    height: 5rem;
+}
+
+.content::after {
+    width: 5rem;
+    height: 3rem;
+    background: orange;
+}
+
+article .content h3 a{
+    position: relative;
+    font-size: 1.3rem;
+    font-style: italic;
+    margin: 0.5rem 0;
+}
+
+article .content h3 a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.3rem;
+    height: 0.1rem;
+    width: 10%;
+    background: orange;
 }
