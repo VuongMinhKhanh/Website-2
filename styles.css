@@ -202,7 +202,7 @@ article h2 {
     position: relative;
 }
 .slideShow img {
-    width: 515px;
+    width: 515px; /*huge problem: change px to %*/
     transform: scale(0.95);
 }
 
