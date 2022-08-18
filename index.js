@@ -15,16 +15,19 @@ $(document).ready(function(){
             //alert(this.getAttribute('data-index'));
         });
     }*/
-    /*var i = 1;
-    setInterval(function(){
-        $(".slideShow div img:first-child").css('margin-left',`${-100*i}%`)
+    var i = 1;
+    var autoSlide = setInterval(function(){
+        $(".slideShow div:first-child div:first-child").css('margin-left',`${-100*i}%`)
         let lim = $(".button").length;
         i++;
         if (i == lim) i = 0;
-    },2000)*/
+    },2000)
+    /*$(".slideShow div:first-child").hover(function() {
+        clearInterval(autoSlide)
+    })*/
     $(".button").click(function() {
        var index = $(".button").index(this);
        var marLeft = -100*index;
-       $(".slideShow div img:first-child").css('margin-left',`${marLeft}%`)
+       $(".slideShow div:first-child div:first-child").css('margin-left',`${marLeft}%`)
     })
 })

@@ -183,9 +183,9 @@ article h2 {
     }
 }
 .slideShow {
-    width: 80%;
+    width: 515px;
     margin: 1rem auto;
-    /* animation: pictureClip 1.5s 2.5s backwards; */
+    animation: pictureClip 1.5s 2.5s backwards;
     /* backwards: lấy css của from làm trạng thái trước animation 
     forwards: lấy css của to làm trạng thái sau animaiton*/
     position: relative;
@@ -199,10 +199,10 @@ article h2 {
 }
 
 .slideShow > div:first-child > div {
-    width: 100%;
+    position: relative;
 }
 .slideShow img {
-    width: 100%;
+    width: 515px;
     transform: scale(0.95);
 }
 
@@ -211,6 +211,17 @@ article h2 {
     box-shadow: 2px 2px 4px rgb(151, 147, 147);
 }
 
+.slideShow h3 {
+    color: lightcoral;
+    background: lightskyblue;
+    font-weight: bold;
+    position: absolute;
+    bottom: 0%;
+    text-align: center;
+    width: 100%;
+    backdrop-filter: opacity(50%);
+    z-index: 2;
+}
 .buttons {
     width: 60%;
     position: absolute;
