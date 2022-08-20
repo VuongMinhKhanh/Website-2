@@ -6,10 +6,23 @@
     transition: var(--toggle);
 }
 
+body {
+    overflow-x: hidden;
+}
+
+a:hover {
+    cursor: pointer;
+}
+
 :root {
     --searchBoxWidth: 90%;
     --announcementBox: 70%;
     --toggle: .4s;
+    --bounceUp: .25s;
+    --fallDown: .2s;
+    --fluctuate: 1.25s;
+    --fallWords: 0.2s;
+    --smallBounceStarts: calc(var(--bounceUp) + var(--fallDown) + var(--fluctuate)* 75 / 100 + var(--fallWords)) ;
 }
 
 .hide {
@@ -125,7 +138,6 @@ input[type=text] {
 
 /* section */
 section, article{
-    padding: 0.7rem;
     align-items: flex-start !important;
 }
 
@@ -133,31 +145,28 @@ section, article{
     width: var(--announcementBox);
 }
 /* https://codepen.io/team/keyframers/pen/RwKoMmb */
-article h2 {
+h2 {
     text-align: center;
     color: rgb(104, 103, 103);
     font-weight: bold;
     font-size: 1.5rem;
     font-family: "Prata", serif;
     font-style: italic;
-    animation: textClip 1.5s, moveToLeft 1.5s 1s;
+    transform: translateX(-15rem);
+    animation: textClip 1.5s, moveToRight 1.5s 1s forwards;
 }
 
 @keyframes textClip {
     from {
-        transform: translateX(50%);
+        
         clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
     }
     to {
-        transform: translateX(50%);
         clip-path: polygon(0 100%, 100% 100%, 100% 0, 0 0);
     }
 }
 
-@keyframes moveToLeft {
-    from {
-        transform: translateX(50%);
-    }
+@keyframes moveToRight {
     to {
         transform: translateX(0);
     }
@@ -173,7 +182,7 @@ article h2 {
 }
 
 section {
-    padding: 0;
+    padding: 1rem;
     margin: 1rem;
     box-shadow: 3px 3px 3px 3px rgb(151, 147, 147);
 }
@@ -212,18 +221,25 @@ section {
     box-shadow: 2px 2px 4px rgb(151, 147, 147);
 }
 
+.slideShow img:hover + h3, .slideShow h3:hover {
+    opacity: 1;
+}
+
 .slideShow h3 {
+    font-size: 1.5rem;
     color: coral;
     background: lightskyblue;
+    opacity: 0.5;
     font-weight: bold;
     position: absolute;
-    bottom: 0%;
+    bottom: -5%;
     text-align: center;
     width: 100%;
     backdrop-filter: opacity(50%);
     z-index: 2;
     border-radius: 0.3rem;
 }
+
 .buttons {
     width: 60%;
     position: absolute;
@@ -234,7 +250,7 @@ section {
 }
 
 .button {
-    background: rgb(255, 221, 226);
+    background: rgb(255, 0, 38);
     width: 1rem;
     padding: 0.5rem;
     border: 1px solid lightblue;
@@ -242,27 +258,32 @@ section {
 }
 
 .button:hover {
-    background: violet;
+    background: cornflowerblue;
     cursor: pointer;
 }
 /* News */
 .news {
     width: calc(100% - var(--announcementBox));
     margin-top: 0;
-    background: lightblue;
+}
+.contents {
+    overflow: scroll;
+    height: 36rem;
 }
 
 .content {
+    background: lightblue;
     position: relative;
     justify-content: center;
     border: 1px solid gray;
-    margin: 0.3rem 0;
+    margin: 1.5rem 0;
     z-index: 1;
     padding: 0.5rem;
+    transform: scale(0.97);
 }
 
 .content:hover {
-    transform: scale(1.03);
+    transform: scale(1);
     border: 1px solid black;
 }
 
@@ -271,16 +292,16 @@ section {
     content: "";
     position: absolute;
     z-index: -1;
-    transition: 1s  ;
+    transition: 1s;
 }
 
 .content::before {
     width: 85%;
-    height: 102%;
+    height: 100.8%;
 }
 
 .content::after {
-    width: 102%;
+    width: 100.8%;
     height: 75%;
 }
 
@@ -306,4 +327,177 @@ article .content h3 a::after {
     height: 0.1rem;
     width: 10%;
     background: orange;
+    transition: var(--toggle);
+}
+
+article .content:hover h3 a::after {
+    width: 45%;
+}
+
+/* Library pictures */
+/* .library h2 {
+    animation: pin 1.5s ease-in infinite;
+} */
+
+.library .Pics {
+    margin-top: 3%;
+    align-items: flex-start;
+}
+
+.library .Pics div {
+    padding: 0 0.1rem;
+    width: 33%;
+    position: relative; 
+}
+
+.library .Pics div div {
+    width: 100%;
+}
+.library .Pics div:nth-child(2) {
+    margin-top: 5%;
+    animation-delay: 0.5s;
+    /* margin: 0 auto; */   
+    /* transform: translateY(-50%); */
+}
+
+.library .Pics div:nth-child(3) {
+    margin-top: 10%;
+    animation-delay: 1s;
+    /* margin-right: 0;
+    margin-left: auto; */
+    /* transform: translateY(-100%); */
+}
+
+.library .Pics > div::before {
+    content: "";
+    background-image: url(images/Push\ pin.png);
+    background-size: 2rem 2rem;
+    background-repeat: no-repeat;
+    width: 10%;
+    height: 15%;
+    position: absolute;
+    top: 0%;
+    left: 45%; 
+    z-index: 1;
+    animation: pin var(--fallDown) ease-in calc(var(--smallBounceStarts) - var(--fallWords) ) backwards; 
+    /*thực hiện animation pin trong thời gian fallDown, tại thời điểm sau khi hết fluctuate*/
+}
+
+.library img {
+    width: 100%;
+    animation: bounceUp var(--bounceUp), 
+    fallDown var(--fallDown) ease-out calc(var(--bounceUp)), 
+    fluctuate var(--fluctuate) ease-in-out calc(var(--bounceUp) + var(--fallDown));
+    transform-origin: center -2rem;
+    z-index: 1;
+}
+
+.library .Pics div:first-child:hover > div{
+    transform: rotate(5deg) translateX(-10px);
+    /* vừa xoay, vừa dịch chuyển => giống như xoay tại vị trí cây kim*/
+}
+
+.library .Pics div:last-child:hover > div{
+    transform: rotate(-5deg) translateX(10px);
+}   
+
+.library .Pics div:nth-child(2):hover > div{
+    transform: rotateX(-25deg) translateY(-15px);
+}
+
+.library h3 {
+    text-align: center;
+    margin: 0.5rem auto;
+    z-index: -1;
+    position: relative;
+    animation: fallWords 0.2s ease-in-out calc(var(--bounceUp) + var(--fallDown) + var(--fluctuate)* 75 / 100) backwards,
+    smallBounce 0.256s cubic-bezier(.18,.52,.79,.47) var(--smallBounceStarts);
+}
+
+
+/* @keyframes notTooAdvancedWaving {
+    0%, 100% {
+        transform: rotate(5deg);
+    }
+    37.5% {
+        transform: rotate(-10deg);
+    }
+    87.5% {
+        transform: rotate(10deg);
+    } 
+}still error*/
+/* @keyframes wave {
+    0%, 100% {
+        transform: rotate(10deg);
+    }
+    50% {
+        transform: rotate(-10deg);
+    }
+}  */
+
+@keyframes bounceUp {
+    0% {
+        transform: translateY(45px);
+    }
+    100% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes fallDown {
+    0% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: rotate(8deg) translateY(0px);
+    }
+}
+
+@keyframes fluctuate {
+    0% {
+        transform: rotate(8deg);
+    }
+    25% {
+        transform: rotate(-6deg);
+    }
+    50% {
+        transform: rotate(4deg);
+    }
+    75% {
+        transform: rotate(-2deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+} 
+
+@keyframes fallWords {
+    0% {
+        opacity: 0;
+        transform: translate(2rem, -2rem);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes smallBounce {
+    50% {
+        transform: translateY(-0.5rem);
+    }
+    0%, 100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes pin {
+    0% {
+        opacity: 0;
+        transform: skewY(20deg) scale(1.05) translate(2rem, -2rem);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
 }
