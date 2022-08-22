@@ -49,8 +49,8 @@
             </ul>
         </nav>
     </header>
-    <section class="upperPart flex">
-        <article class="announce">
+    <section class="upperPart flex align_start">
+        <article class="announce align_start">
             <h2>Announcement !!!</h2>
             <div class="slideShow">
                 <div>
@@ -75,7 +75,7 @@
                 </div>
             </div>
         </article>
-        <article class="news">
+        <article class="news ">
             <h2>Breaking news !!!</h2>
             <div class="contents">
                 <div class="content flex">
@@ -98,28 +98,48 @@
         </article>
     </section>
     <section class="library">
-        <h2>Let's take a few looks at our library</h2>
-        <div class="Pics flex">
-            <div class="topPic">
-                <div>
-                    <img src="images/Outside the library.jpg" alt="">
-                    <h3>Description 1</h3>
+        <h2 class=" reveal">Let's take a few looks at our library</h2>
+        <div class="Pics flex between">
+            <div class="topPic reveal">
+                <div class="frame">
+                    <div><img src="images/Outside the library.jpg" alt=""></div>
+                    <h3>A high view from a 20-grand flycam</h3>
                 </div>
             </div>
-            <div class="middlePic">
-                <div>
-                    <img src="images/Readers in the library.jpg" alt="">
-                    <h3>Description 2</h3>
+            <div class="middlePic reveal">
+                <div class="frame">
+                    <div><img src="images/Readers in the library.jpg" alt=""></div>
+                    <h3>Students preparing for a graduation photoshoot</h3>
                 </div>
             </div>
-            <div class="bottomPic">
-                <div>
-                    <img src="images/One ORDINARY guy at the hallway.jpg" alt="">
-                    <h3>Description 3</h3>
+            <div class="bottomPic reveal">
+                <div class="frame">
+                    <div class="container"><img src="images/One ORDINARY guy at the hallway.jpg" alt=""></div>
+                    <h3>Such a hallway that one guy needs himself to be photo taken in his signature walking pose</h3>
                 </div>
             </div>
         </div>
-        <!-- <h2>Open: 8am Close: 6pm</h2> -->
+        <div class="openHour reveal">
+            <h2>Open hour: 8AM - 6PM</h2>
+        </div>
+    </section>
+    <section class="stat reveal">
+        <h2>Some statistics about the library</h2>
+        <div class="numbers flex">
+            <div class="readers">
+                <div class="number" data="12">0<span>M+</span></div>
+                <h3>Readers throughout opearating years</h3>
+            </div>
+            <div class="books">
+                <div class="number" data="150">0<span>K+</span></div>
+                <h3>Books from thousands of famous authors</h3>
+            </div>
+            <div class="subs">
+                <div class="number" data="123456">0</div>
+                <h3>Online subscribers following newest E-books</h3>
+            </div>
+        </div>
+        
     </section>
     <footer></footer>
 </body>

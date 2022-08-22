@@ -65,6 +65,10 @@ body {
     align-items: center;
 }
 
+.align_start{
+    align-items: flex-start !important;
+}
+
 .between {
     justify-content: space-between !important;
 }
@@ -137,14 +141,16 @@ input[type=text] {
 }
 
 /* section */
-section, article{
-    align-items: flex-start !important;
+section {
+    padding: 1rem;
+    margin: 1rem;
+    box-shadow: 3px 3px 3px 3px rgb(151, 147, 147);
 }
 
 .announce {
     width: var(--announcementBox);
-}
-/* https://codepen.io/team/keyframers/pen/RwKoMmb */
+} 
+
 h2 {
     text-align: center;
     color: rgb(104, 103, 103);
@@ -181,15 +187,9 @@ h2 {
     }
 }
 
-section {
-    padding: 1rem;
-    margin: 1rem;
-    box-shadow: 3px 3px 3px 3px rgb(151, 147, 147);
-}
-
 /* Slideshow gallery */
 .slideShow {
-    width: 515px;
+    width: 515px; /* chưa chỉnh theo tỉ lệ được*/
     margin: 1rem auto;
     /* backwards: lấy css của from làm trạng thái trước animation 
     forwards: lấy css của to làm trạng thái sau animaiton*/
@@ -335,12 +335,9 @@ article .content:hover h3 a::after {
 }
 
 /* Library pictures */
-/* .library h2 {
-    animation: pin 1.5s ease-in infinite;
-} */
 
 .library .Pics {
-    margin-top: 3%;
+    margin-top: 5%;
     align-items: flex-start;
 }
 
@@ -350,18 +347,29 @@ article .content:hover h3 a::after {
     position: relative; 
 }
 
-.library .Pics div div {
+.library .Pics .frame  {
     width: 100%;
+    padding: 0.7rem 0.7rem 0.2rem 0.7rem;
+    background-image: linear-gradient(to bottom right, lightblue, lightgreen, lightskyblue);
+    box-shadow: 0 0 2px 2px rgba(0,0,0,.15); 
+    z-index: -1;
+    transform-origin: center -2rem;
+    border-radius: 1%;
+}
+
+.library .Pics .frame div {
+    width: 100%;
+    
 }
 .library .Pics div:nth-child(2) {
-    margin-top: 5%;
+    margin-top: 10%;
     animation-delay: 0.5s;
     /* margin: 0 auto; */   
     /* transform: translateY(-50%); */
 }
 
 .library .Pics div:nth-child(3) {
-    margin-top: 10%;
+    margin-top: 20%;
     animation-delay: 1s;
     /* margin-right: 0;
     margin-left: auto; */
@@ -379,39 +387,44 @@ article .content:hover h3 a::after {
     top: 0%;
     left: 45%; 
     z-index: 1;
-    animation: pin var(--fallDown) ease-in calc(var(--smallBounceStarts) - var(--fallWords) ) backwards; 
-    /*thực hiện animation pin trong thời gian fallDown, tại thời điểm sau khi hết fluctuate*/
+}
+
+.frame > div::after {
+    content: "";
+    box-shadow: inset 1px 0 3px 4px rgba(0,0,0,.4);
+    z-index: 10;
+    position: absolute;
+    top: -1%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
 }
 
 .library img {
     width: 100%;
-    animation: bounceUp var(--bounceUp), 
-    fallDown var(--fallDown) ease-out calc(var(--bounceUp)), 
-    fluctuate var(--fluctuate) ease-in-out calc(var(--bounceUp) + var(--fallDown));
-    transform-origin: center -2rem;
     z-index: 1;
 }
 
-.library .Pics div:first-child:hover > div{
-    transform: rotate(5deg) translateX(-10px);
+.library .Pics div:first-child:hover .frame{
+    transform: rotate(5deg) translateX(5px);
     /* vừa xoay, vừa dịch chuyển => giống như xoay tại vị trí cây kim*/
 }
 
-.library .Pics div:last-child:hover > div{
-    transform: rotate(-5deg) translateX(10px);
-}   
+.library .Pics div:last-child:hover .frame{
+    transform: rotate(-5deg) translateX(-5px);
+}  
 
-.library .Pics div:nth-child(2):hover > div{
-    transform: rotateX(-25deg) translateY(-15px);
+.library .Pics div:nth-child(2):hover .frame{
+    transform-origin: top;
+    transform: rotateX(-30deg);
 }
 
 .library h3 {
     text-align: center;
-    margin: 0.5rem auto;
+    margin: 0 auto;
     z-index: -1;
     position: relative;
-    animation: fallWords 0.2s ease-in-out calc(var(--bounceUp) + var(--fallDown) + var(--fluctuate)* 75 / 100) backwards,
-    smallBounce 0.256s cubic-bezier(.18,.52,.79,.47) var(--smallBounceStarts);
+    
 }
 
 
@@ -500,4 +513,136 @@ article .content:hover h3 a::after {
         opacity: 1;
         transform: none;
     }
+}
+
+.openHour h2{
+    position: relative;
+    margin: 2rem auto;
+    width: fit-content;
+    animation: none;
+    transform: none;
+}
+
+.openHour h2::before {
+    content: "";
+    background-image: url(images/left\ gate.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 0;
+    top: -50%;
+    width: 50%;
+    height: 200%;
+    z-index: 2;
+    transform-origin: left;
+}
+
+.openHour h2::after {
+    content: "";
+    background-image: url(images/right\ gate.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    right: 0;
+    bottom: -50%;
+    width: 50%;
+    height: 200%;
+    z-index: 2;
+    transform-origin: right;
+}
+
+@keyframes openRight {
+    100% {
+        transform: rotateY(180deg);
+    }
+}
+
+@keyframes openLeft {
+    100% {
+        transform: rotateY(-180deg);
+    }
+}
+
+/* Stat */
+section.stat {
+    justify-content: space-evenly;
+    padding: 1rem;
+    margin: 1rem 0;
+    box-shadow: none;
+    width: 100%;
+    height: 90vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://i0.wp.com/lucloi.vn/wp-content/uploads/2020/01/maxresdefault-58.jpg?fit=1280%2C720&ssl=1");
+}
+
+.stat h2 {
+    /* color: lawngreen; */
+    margin: auto;
+    font-size: 2.5rem;
+    width: fit-content;
+    background-image: linear-gradient(to top right, rgb(204, 109, 204), rgb(207, 102, 58), rgb(103, 210, 246), rgb(95, 242, 95));
+    color: transparent; 
+    -webkit-background-clip: text;
+}
+
+.numbers {
+    margin: auto 0;
+}
+
+.numbers > div {
+    width: 33%;
+    text-align: center;
+}
+
+.stat .number, .stat span{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: bold;
+    font-size: 5rem;
+    color: yellow;
+}
+
+.stat h3 {
+    color: white;
+    font-size: 1.2rem;  
+    font-weight: 100;
+    font-style: italic;
+    margin: 0 auto;
+}
+/* CSS for JS */
+.reveal {
+    animation: none;
+    opacity: 0;
+}
+
+.reveal.activate {
+    opacity: 1;
+}
+
+h2.reveal.activate  {
+    animation: textClip 1.5s, moveToRight 1.5s 1s forwards;
+}
+
+.reveal.activate .frame {
+    animation: bounceUp var(--bounceUp), 
+    fallDown var(--fallDown) ease-out calc(var(--bounceUp)), 
+    fluctuate var(--fluctuate) ease-in-out calc(var(--bounceUp) + var(--fallDown));
+}
+
+.reveal.activate::before {
+    animation: pin var(--fallDown) ease-in calc(var(--smallBounceStarts) - var(--fallWords) ) backwards; 
+    /*thực hiện animation pin trong thời gian fallDown, tại thời điểm sau khi hết fluctuate*/
+}
+
+.reveal.activate h3 {
+    animation: fallWords 0.2s ease-in-out calc(var(--bounceUp) + var(--fallDown) + var(--fluctuate)* 75 / 100) backwards,
+    smallBounce 0.256s cubic-bezier(.18,.52,.79,.47) var(--smallBounceStarts);
+}
+
+.reveal.activate h2::before {
+    animation: openLeft 2s ease-in-out forwards;
+}
+
+.reveal.activate h2::after {
+    animation: openRight 2s ease-in-out forwards;
 }

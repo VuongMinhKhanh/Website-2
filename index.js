@@ -1,8 +1,17 @@
-var i = 0;
-var isPause = false;
-var autoSlide;
-var slideTime = 3000;
-var revealPoint = 100;
+var i = 0, isPause = false;
+
+var autoSlide, slideTime = 3000;
+
+var revealPoint = 150;
+
+function counter() {
+    for (let s of show)
+    {
+        let count = s.getAttribute("data")
+        s.innerHTML = count.toString()//
+    }
+}
+
 $(document).ready(function(){ 
     // Click magnifier glass to open search bar, click outside to close it
     $(document).click(function(e) {  
@@ -26,7 +35,6 @@ $(document).ready(function(){
     }*/
 
     // Make slideshow gallery
-    
     autoSlide = setInterval(function(){
         if (!isPause)
         {
@@ -52,16 +60,50 @@ $(document).ready(function(){
     })
 
     // Render elements when scrolling down
-    $(window).scroll(function() {
-        let pics = $(".Pics > div")
-        for (let i of pics)
+    $(window).on("scroll", function() {
+        var pics = $(".reveal")
+        for (let pic of pics)//let pic of pics ko gắn chung method của jQ
         {
             let window = $(this).innerHeight()
-            let revealTop = $(i).getBoundingClientRect().top
-            alert(revealTop)
-            if (revealPoint < window - revealTop) alert("được hảo hán   ")
+            let revealTop = pic.getBoundingClientRect().top
+            
+            let active = revealPoint < window - revealTop
+            if (active)
+                pic.classList.add("activate")
+            else
+                pic.classList.remove("activate")
         }
     })
+    // Counter up statistics (jQ) https://codepen.io/Creasium/pen/KKdZoja?editors=1000 (ko hiểu lun)
+    // Counter up statistics (JS)
+    var show = $(".number"), counter = 0, delay = -1, times = 100; 
+    function helo() {
+        return;
+    }
+    helo();
+    //counter();
+    
+    $(".stat h2").click(function counter1() {
+        for (let s of show)
+        {
+            let countLimit = s.getAttribute("data")
+            let y = 0, x = countLimit / 2; 
+            y++;
+            if (counter <= countLimit)
+            {
+                s.innerHTML = counter.toString()//
+                counter++
+                //delay = 100000 / count
+                if (counter >= count * 80 / 100)
+                    delay += times/**/
+
+                setTimeout(function() {
+                    counter1()
+                }, delay)
+            }
+
+        }
+    } )
 
     // Reset setInterval when clicking ".button"
     // Press a keyword to find relevant books
