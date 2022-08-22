@@ -4,12 +4,25 @@ var autoSlide, slideTime = 3000;
 
 var revealPoint = 150;
 
-function counter() {
-    for (let s of show)
+var count = 0, delay = 50, times = 1000;
+function counter(s) {
+    let countLimit = s.getAttribute("data")
+    if (count <= countLimit)
     {
-        let count = s.getAttribute("data")
-        s.innerHTML = count.toString()//
+        s.innerHTML = count.toString() + s.getAttribute("data-unit")
+        count++
+        //delay = 100000 / count
+        setTimeout(function() {
+            counter(s)
+        }, delay)
     }
+    return;
+}
+
+function startCounting() {
+    if ($("section.stat").hasClass("activate"))
+        for (let s of $(".number"))
+            counter(s)
 }
 
 $(document).ready(function(){ 
@@ -69,43 +82,26 @@ $(document).ready(function(){
             
             let active = revealPoint < window - revealTop
             if (active)
+            {
                 pic.classList.add("activate")
-            else
-                pic.classList.remove("activate")
+                setTimeout(function() {
+                    startCounting();
+                }, 2000)
+            }
+            /*else
+                pic.classList.remove("activate")*/
         }
     })
+
+    
     // Counter up statistics (jQ) https://codepen.io/Creasium/pen/KKdZoja?editors=1000 (ko hiểu lun)
     // Counter up statistics (JS)
-    var show = $(".number"), counter = 0, delay = -1, times = 100; 
-    function helo() {
-        return;
-    }
-    helo();
-    //counter();
     
-    $(".stat h2").click(function counter1() {
-        for (let s of show)
-        {
-            let countLimit = s.getAttribute("data")
-            let y = 0, x = countLimit / 2; 
-            y++;
-            if (counter <= countLimit)
-            {
-                s.innerHTML = counter.toString()//
-                counter++
-                //delay = 100000 / count
-                if (counter >= count * 80 / 100)
-                    delay += times/**/
-
-                setTimeout(function() {
-                    counter1()
-                }, delay)
-            }
-
-        }
-    } )
+    
+        
 
     // Reset setInterval when clicking ".button"
     // Press a keyword to find relevant books
-
+            /*if (counter >= countLimit * 80 / 100)
+                delay += times*/
 })

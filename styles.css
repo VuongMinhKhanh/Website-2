@@ -581,7 +581,7 @@ section.stat {
     margin: auto;
     font-size: 2.5rem;
     width: fit-content;
-    background-image: linear-gradient(to top right, rgb(204, 109, 204), rgb(207, 102, 58), rgb(103, 210, 246), rgb(95, 242, 95));
+    background-image: linear-gradient(to top right, rgb(204, 109, 204), rgb(207, 102, 58), rgb(71, 246, 71), rgb(103, 210, 246));
     color: transparent; 
     -webkit-background-clip: text;
 }
