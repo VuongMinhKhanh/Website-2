@@ -10,10 +10,6 @@ body {
     overflow-x: hidden;
 }
 
-a:hover {
-    cursor: pointer;
-}
-
 :root {
     --searchBoxWidth: 90%;
     --announcementBox: 70%;
@@ -50,7 +46,7 @@ body {
 .logo {
     margin: 0.3rem auto ;
     width: fit-content;
-    width: 25%;
+    width: 30%;
     min-height: 10vh;
 }
 
@@ -77,6 +73,7 @@ nav {
     box-shadow: 3px 3px 3px 3px rgb(151, 147, 147);
     max-height: 10vh;
     margin: 2rem 0.5rem;
+    position: relative;
 }
 
 nav li a {
@@ -88,6 +85,12 @@ nav li a {
     padding: 1rem;
     background: #f9f6f0;
 }
+
+
+.arrow {
+    transition: var(--touchButton);
+}
+
 .products {
     position: relative;
 }
@@ -112,7 +115,7 @@ nav .flex > li a {
     padding: 0px;
 }
 
-input[type=text] {
+header .search {
     position: fixed;
     right: calc((100% - var(--searchBoxWidth)) / 2);
     left: calc((100% - var(--searchBoxWidth)) / 2);
@@ -129,6 +132,9 @@ input[type=text] {
     transition: var(--toggle);
 }
 
+.smallGlass {
+    display: none;
+}
 @media screen and (min-width: 501px) {
     .products:hover .product{
         display: block !important;
@@ -189,30 +195,31 @@ h2 {
 
 /* Slideshow gallery */
 .slideShow {
-    width: 515px; /* chưa chỉnh theo tỉ lệ được*/
+    width: 80%; 
+    height: 120%;
     margin: 1rem auto;
-    /* backwards: lấy css của from làm trạng thái trước animation 
-    forwards: lấy css của to làm trạng thái sau animaiton*/
     position: relative;
+    
 }
 
-.slideShow > div:first-child {
+.slideShow > .slideFrame {
+    width: 100%;
     margin: auto;
     display: flex;
     align-items: flex-start;
     overflow: hidden;
-    
 }
 
-.slideShow > div:first-child > div {
+.slideShow > .slideFrame > div {
     position: relative;
+    min-width: 100%;
 }
 
-.slideShow > div:first-child > div:first-child {
+.slideShow .firstImage {
     animation: pictureClip 2s cubic-bezier(0,-0.01,.26,.97) 2.5s backwards;
 }
 .slideShow img {
-    width: 515px; /*huge problem: change px to %*/
+    width: 100%; /*huge problem: change px to %*/
     transform: scale(0.95);
 }
 
@@ -279,7 +286,13 @@ h2 {
     margin: 1.5rem 0;
     z-index: 1;
     padding: 0.5rem;
-    transform: scale(0.97);
+    transform: scale(0.97) translateX(100%);
+}
+
+@keyframes pushIn {
+    100% {
+        transform: translateX(0%);
+    }
 }
 
 .content:hover {
@@ -297,7 +310,7 @@ h2 {
 
 .content::before {
     width: 85%;
-    height: 100.8%;
+    height: 100.95%;
 }
 
 .content::after {
@@ -426,7 +439,6 @@ article .content:hover h3 a::after {
     position: relative;
     
 }
-
 
 /* @keyframes notTooAdvancedWaving {
     0%, 100% {
@@ -564,20 +576,18 @@ article .content:hover h3 a::after {
 }
 
 /* Stat */
-section.stat {
+section.stat{
     justify-content: space-evenly;
-    padding: 1rem;
+    /* padding: 1rem;
     margin: 1rem 0;
-    box-shadow: none;
-    width: 100%;
+    box-shadow: none; */
     height: 90vh;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://i0.wp.com/lucloi.vn/wp-content/uploads/2020/01/maxresdefault-58.jpg?fit=1280%2C720&ssl=1");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url("https://i0.wp.com/lucloi.vn/wp-content/uploads/2020/01/maxresdefault-58.jpg?fit=1280%2C720&ssl=1");
 }
 
 .stat h2 {
-    /* color: lawngreen; */
     margin: auto;
     font-size: 2.5rem;
     width: fit-content;
@@ -595,7 +605,7 @@ section.stat {
     text-align: center;
 }
 
-.stat .number, .stat span{
+.stat .number{
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: bold;
     font-size: 5rem;
@@ -609,6 +619,183 @@ section.stat {
     font-style: italic;
     margin: 0 auto;
 }
+
+/* Resources */
+
+/* reservePlace */
+.reservePlace {
+    height: 100vh;
+    background-color: rgb(250, 250, 250);
+    position: relative;
+    transform-origin: top;
+}
+/* .reservePlace {
+    position: relative;
+    height: 100vh;
+    background: gray url(images/Reserve\ a\ place.jpg) no-repeat center;
+    background-size: cover;
+    clip-path: polygon(75% 0, 100% 0, 100% 100%, 7% 100%);
+    shape-outside: polygon(75% 0, 100% 0, 100% 100%, 7% 100%);
+} */
+.reservePlace .imgContainer{
+    height: 100%;
+    width: 100%;
+    float: right;
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), url(images/Reserve\ a\ place.jpg) no-repeat center;
+    background-size: cover;
+    clip-path: polygon(73% 0, 100% 0, 100% 100%, 0 100%, 0 93%);
+    shape-outside: polygon(73% 0, 100% 0, 100% 100%, 0 100%, 0 93%);
+}
+
+.reservePlace div {
+    text-align: left;
+    transform: none;
+    margin: 0;
+    animation: none;
+}
+
+.reservePlace p {
+    font-size: 1.5rem;   
+    color: #79cbb8; 
+    margin: 0;
+}
+
+.reservePlace span {
+    color: #500472;
+    text-decoration: underline;
+    text-decoration-color: #ffdb58;  
+    text-decoration-style: wavy;
+    font-size: 1.6rem;  
+    font-style: italic;
+    margin: 0;
+}
+
+.btnFrame {
+    position: absolute;
+    right: 40%;
+    left: 40%;
+    top: 40%;
+    bottom: 40%;
+    z-index: 10;
+}
+
+.btnFrame:hover + .imgContainer {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 0);
+    /* background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(images/Reserve\ a\ place.jpg) no-repeat center;
+    background-size: cover; */
+} 
+
+#CTA {
+    margin: 1rem auto;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    font-style: italic;
+    background: none;
+    cursor: pointer;
+    position: relative;
+    border-radius: 10px;
+    color: whitesmoke;
+    z-index: 10;
+    text-align: center;
+    transform: scale(1.05);
+}
+
+#CTA:hover {
+    transform: scale(1.5);
+}
+
+#CTA::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;     
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    background-image: linear-gradient(45deg, red, orange, yellow, green, blue, Indigo, violet);
+    filter: blur(5px);
+    background-size: 400%;
+    border-radius: 10px;
+    animation: feelTheGlow 10s linear infinite;
+    z-index: -2;
+}
+
+#CTA::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: #222;
+    border-radius: 10px;
+}
+
+@keyframes feelTheGlow {
+    100% {
+        background-position-x: 400%;
+    }
+}
+
+@keyframes flip {
+    0% {
+        transform: rotateX(90deg);
+    }
+}
+
+/* Footer */
+table, th, td {
+    background: #79cbb8;
+    width: 100%;
+    text-align: center;
+}
+
+.brand th, .newsletter{
+    font-size: 1.5rem;  
+    font-style: italic;
+    font-weight: bold;
+}
+
+.brand th, .infos td{
+    border-bottom: 1px solid white;
+    padding: 0.5rem 0;
+}
+
+.infos td {
+    width: 50%;
+}
+
+.info {
+    height: fit-content;
+    text-align: left;
+    padding-left: 2rem;
+}
+
+.info li {
+    list-style-type: circle;
+}
+
+.info li, .newsletter {
+    font-size: 1.1rem;
+}
+
+.infos input{
+    width: 60%;
+    height: 2rem;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.infos input[type=text] {
+    margin: 0.2rem auto;
+}
+
+.infos input[type=button]:hover {
+    background: yellow;
+    color: crimson;
+    cursor: pointer;
+}
+
 /* CSS for JS */
 .reveal {
     animation: none;
@@ -639,10 +826,24 @@ h2.reveal.activate  {
     smallBounce 0.256s cubic-bezier(.18,.52,.79,.47) var(--smallBounceStarts);
 }
 
-.reveal.activate h2::before {
+.reveal.activate.openHour h2::before {
     animation: openLeft 2s ease-in-out forwards;
 }
 
-.reveal.activate h2::after {
+.reveal.activate.openHour h2::after {
     animation: openRight 2s ease-in-out forwards;
 }
+
+.reservePlace.reveal.activate {
+    animation: flip 0.8s cubic-bezier(.165,.84,.44,1) forwards;
+}
+
+.pushIn {
+    animation: pushIn 1s ease-out forwards;
+}
+.error {
+    border-color: red;
+}
+
+/* backwards: lấy css của from làm trạng thái trước animation 
+    forwards: lấy css của to làm trạng thái sau animaiton*/

@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="mobileStyles.css" media="screen and (max-width: 500px)">
+    <link rel="stylesheet" href="mobileStyles.css" media="screen and (max-width: 800px)">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="index.js"></script>
     <title>Thư viện 2</title>
 </head>
 <body>  
     <header>
-        <div class="logo"><img src="http://thegioichothue.vn/wp-content/uploads/2020/04/cropped-Capture-e1586792086585-1.png" alt=""></div>
+        <div class="logo"><a href="http://192.168.0.152:5500/"><img src="http://thegioichothue.vn/wp-content/uploads/2020/04/cropped-Capture-e1586792086585-1.png" alt=""></a></div>
         <nav>
             <ul class="flex between menu">
                 <div class="flex">
@@ -30,12 +30,13 @@
                 <!-- https://www.clorox.com/404 -->
                 <li><div><i class="fa-solid fa-magnifying-glass"></i></div></li>
             </ul> 
-            <input type="text" placeholder=" Tìm kiếm sách" class="hide">
+            <input type="text" placeholder=" Tìm kiếm sách" class="hide search">
             <div class="burger-icon">
                 <div class="topBun"></div>
                 <div class="patty"></div>
                 <div class="bottomBun"></div>
             </div>   
+            <div class="smallGlass"><i class="fa-solid fa-magnifying-glass"></i></div>
             <ul class="navMobile"> 
                 <li><a href=""><i class="fa-solid fa-house"></i> Home</a></li>
                 <li class="products"><a>Categories   <i class="fa-solid fa-arrow-down"></i></a>
@@ -49,13 +50,13 @@
             </ul>
         </nav>
     </header>
-    <section class="upperPart flex align_start">
+    <section class="breakNews flex align_start">
         <article class="announce align_start">
             <h2>Announcement !!!</h2>
             <div class="slideShow">
-                <div>
-                    <div>
-                        <img src="images/rickroll-roll.gif" alt="">
+                <div class="slideFrame">
+                    <div class="firstImage">
+                        <img src="https://c.tenor.com/_4YgA77ExHEAAAAd/rick-roll.gif" alt="">
                         <h3>Say hello to Rick Ashley - Never gonna give you up!!!</h3>
                     </div>
                     <div>
@@ -75,7 +76,7 @@
                 </div>
             </div>
         </article>
-        <article class="news ">
+        <article class="news">
             <h2>Breaking news !!!</h2>
             <div class="contents">
                 <div class="content flex">
@@ -125,22 +126,58 @@
     </section>
     <section class="stat reveal">
         <h2>Some statistics about the library</h2>
-        <div class="numbers reveal flex">
-            <div class="readers">
-                <div class="number" data="12" data-unit="M+"></div>
+        <div class="numbers reveal flex align_start">
+            <div>
+                <div class="number" data="12" data-unit="M+">0</div>
                 <h3>Readers throughout opearating years</h3>
             </div>
-            <div class="books">
-                <div class="number" data="151" data-unit="K+"></div>
+            <div>
+                <div class="number" data="151" data-unit="K+">0</div>
                 <h3>Books from thousands of famous authors</h3>
             </div>
-            <div class="subs">
-                <div class="number" data="1123" data-unit=""></div>
+            <div>
+                <div class="number" data="1123" data-unit="">0</div>
                 <h3>Online subscribers following newest E-books now</h3>
             </div>
         </div>
-        
     </section>
-    <footer></footer>
+    <!-- <section class="resources flex">
+        <div class="books"><img src="https://www.british-study.com/en/wp-content/uploads/sites/2/2013/11/Pile-of-books-1.jpg" alt=""></div>
+        <div class="ebooks"><img src="data:image/jpeg;base64,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" alt=""></div>
+        <div class="magazine"><img src="https://content.time.com/time/magazine/archive/covers/1975/1101750512_400.jpg" alt=""></div>
+        <div class="documentaries"><img src="https://images.squarespace-cdn.com/content/v1/54866b96e4b062e01ab10882/1603210672572-I8UYPERU7E6KT7E8PL8Q/image-asset.jpeg?format=1500w" alt=""></div>
+    </section> -->
+    <section class="reservePlace reveal">
+        <div class="btnFrame"><a href="#"><button id="CTA">Reserve a library room!</button></a></div>
+        <div class="imgContainer"></div>
+        <div>
+            <p>Feeling sleepy, <span>spaced out</span> ???</p>
+            <p>Need to be productive, but <span>don't know</span> where to start ???</p>
+            <p><span>Click the button</span> and <span>back in the race !!!</span> </p>
+        </div>
+    </section>
+    <footer>
+        <table>
+            <tr class="brand">
+                <th colspan="2">Thế Giới Cho Thuê</th>
+            </tr>
+            <tr class="infos">
+                <td class="info">
+                    <ul>
+                        <li>HQ: 10501 Garden Grove Blvd. Garden Grove, CA 92843</li>
+                        <li>Coldline: (714) 636-3002</li>
+                    </ul>
+                </td>
+                <td class="newsletter">Get notified everyday <br>
+                    <input type="text" placeholder="Enter your email: "> <br>
+                    <div class="errorMess"></div>
+                    <input type="button" value="Subscribe">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">@2022 Library #2 - All rights reserved</td>
+            </tr>
+        </table>
+    </footer>
 </body>
 </html>
