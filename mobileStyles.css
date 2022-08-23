@@ -122,6 +122,7 @@ nav .flex > li{
 
 .breakNews article h2 {
     margin: 2rem auto 0;
+    font-size: 1.5rem !important;
 }
 .news .contents{
     height: 18rem;
@@ -178,6 +179,11 @@ nav .flex > li{
 }
 
 /* stat */
+.stat {
+    height: auto !important;
+    background-repeat: no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url("images/increasedGraph.png") !important;
+}
 .numbers {
     display: block;
 }
