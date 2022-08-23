@@ -25,7 +25,30 @@ function startCounting() {
             counter(s)
 }
 
+function oneByOne (selector, Class, time) {
+    /*
+    time : sum time to run parallelly with other animations
+    length : numbers of HTMLCollection
+    */
+    var delay = 0;
+    for (let s of selector) 
+    {
+        let aniDelay = delay * time / selector.length
+        s.setAttribute("style",`animation-delay: ${aniDelay}ms;`)
+        s.classList.add(`${Class}`)
+        delay++
+    }
+}
+
 $(document).ready(function(){ 
+    // Render respectively product > li
+    $(".subNavMobile .products > a").click(function() {
+        let product = $(".subNavMobile .product > li")
+        oneByOne(product, "slideUpProduct", 500)
+        $(this).children("i").toggleClass("arrowRotate")
+    })
+    
+
     // Click magnifier glass to open search bar, click outside to close it
     $(document).click(function(e) {  
         if ($(e.target).closest($(".search")).length || $(e.target).closest($("i.fa-solid.fa-magnifying-glass")).length) {
@@ -59,7 +82,7 @@ $(document).ready(function(){
     }, slideTime)
 
     // Hover on picture to pause the slideshow (intended to use preventDefault())
-    $(".slideShow div:first-child, .slideShow h3").hover(function() {
+    $(".slideFrame").hover(function() {
         isPause = true;
     }, function() {
         isPause = false;
@@ -74,15 +97,7 @@ $(document).ready(function(){
 
     // News appears respectively 
     var content = $(".content")
-    var delay = 0
-    for (let c of content)
-    {
-        let aniDelay = delay * 1500 / content.length
-        //1500 là số giây để news chạy animation chung với h2
-        c.setAttribute("style",`animation-delay: ${aniDelay}ms;`)
-        c.classList.add("pushIn")
-        delay++
-    }
+    oneByOne(content, "pushIn", 1500)
     
     // Render elements when scrolling down
     $(window).on("scroll", function() {
@@ -117,7 +132,7 @@ $(document).ready(function(){
         $(".errorMess").text(message)
     })
     btn.on("click", function() {
-        message = "Gmail is not valid"
+        message = `Gmail is not valid without ${gmail}. Please try again`
         if(text.val().indexOf("@gmail.com") <= 0) // index <= 0 => text = gmail => false
         {
             setTimeout(function() {
@@ -137,7 +152,18 @@ Check out everyday for more exclusive news.`)
             $(this).css("border-color","none")
         })*/
     })
-        
+    
+    // Open responsive menu
+    $(".burger").click(function() {
+        $(".bottomBun").toggleClass("clickBottomBun")
+        $(this).children("div").toggleClass("clickBurger")
+        $(".subNavMobile").toggleClass("show")
+    })
+
+    // Toggle .product
+    $(".products").click(function() {
+        $(this).children("ul").toggleClass("displayProduct")
+    })
 
     // Reset setInterval when clicking ".button"
     // Press a keyword to find relevant books

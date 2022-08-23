@@ -24,13 +24,11 @@ body {
 .hide {
     opacity: 0;
     transform: scale(0);
-    transition: var(--toggle);
 }
 
 .show {
     opacity: 1;
     transform: scale(1);
-    transition: var(--toggle);
 }
 
 a {
@@ -73,7 +71,6 @@ nav {
     box-shadow: 3px 3px 3px 3px rgb(151, 147, 147);
     max-height: 10vh;
     margin: 2rem 0.5rem;
-    position: relative;
 }
 
 nav li a {
@@ -86,7 +83,6 @@ nav li a {
     background: #f9f6f0;
 }
 
-
 .arrow {
     transition: var(--touchButton);
 }
@@ -97,22 +93,14 @@ nav li a {
 
 nav .flex > li{
     margin: 0 0.7rem;
-    width: fit-content;
 }
 
 nav .flex > li a {
-    width: fit-content;
+    text-align: center;
     padding: 0.4rem 0;
     display: block;
     transition: transform ease-in-out 0.25s;
     text-align: center;
-}
-.product {
-    display: none !important;
-    position: absolute;
-    z-index: 1;
-    width: 9rem;
-    padding: 0px;
 }
 
 header .search {
@@ -124,6 +112,10 @@ header .search {
     border-radius: 4px;
     box-shadow: 2px 2px 4px rgb(151, 147, 147);
     z-index: 1000;
+}
+
+.fa-magnifying-glass {
+    font-size: 1.1rem;
 }
 
 .fa-magnifying-glass:hover {
@@ -142,7 +134,7 @@ header .search {
     }
 }
 
-.burger-icon, .navMobile {
+.burger-icon, .navMobile, .subNavMobile {
     display: none;
 }
 
@@ -291,12 +283,12 @@ h2 {
 
 @keyframes pushIn {
     100% {
-        transform: translateX(0%);
+        transform: scale(0.97) translateX(0%);
     }
 }
 
 .content:hover {
-    transform: scale(1);
+    transform: scale(1) !important;
     border: 1px solid black;
 }
 

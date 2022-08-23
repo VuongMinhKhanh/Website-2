@@ -15,39 +15,49 @@
     <header>
         <div class="logo"><a href="http://192.168.0.152:5500/"><img src="http://thegioichothue.vn/wp-content/uploads/2020/04/cropped-Capture-e1586792086585-1.png" alt=""></a></div>
         <nav>
-            <ul class="flex between menu">
-                <div class="flex">
-                    <li><a href=""><i class="fa-solid fa-house"></i> Home</a></li>
-                    <li class="products"><a href="">Categories  <i class="fa-solid fa-arrow-down"></i></a>
-                        <ul class="product scale">
-                            <li><a href="#">Product 1</a></li>
-                            <li><a href="#">Product 2</a></li>
-                            <li><a href="#">Product 3</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="">Contact</a></li>
-                </div> 
-                <!-- https://www.clorox.com/404 -->
-                <li><div><i class="fa-solid fa-magnifying-glass"></i></div></li>
-            </ul> 
+            <div class="navPC">
+                <ul class="flex between menu">
+                    <div class="flex">
+                        <li><a href=""><i class="fa-solid fa-house"></i> Home</a></li>
+                        <li class="products"><a href="">Categories  <i class="fa-solid fa-arrow-down"></i></a>
+                            <ul class="product">
+                                <li><a href="#">Product 1</a></li>
+                                <li><a href="#">Product 2</a></li>
+                                <li><a href="#">Product 3</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="">Contact</a></li>
+                    </div> 
+                    <li><div><i class="fa-solid fa-magnifying-glass"></i></div></li>
+                </ul>
+            </div> 
             <input type="text" placeholder=" Tìm kiếm sách" class="hide search">
-            <div class="burger-icon">
-                <div class="topBun"></div>
-                <div class="patty"></div>
-                <div class="bottomBun"></div>
-            </div>   
-            <div class="smallGlass"><i class="fa-solid fa-magnifying-glass"></i></div>
-            <ul class="navMobile"> 
-                <li><a href=""><i class="fa-solid fa-house"></i> Home</a></li>
-                <li class="products"><a>Categories   <i class="fa-solid fa-arrow-down"></i></a>
-                    <ul class="product scale">
-                        <li><a href="#">Product 1</a></li>
-                        <li><a href="#">Product 2</a></li>
-                        <li><a href="#">Product 3</a></li>
+            <div class="navMobile flex between">
+                <div class="burger-icon">
+                    <div class="burger"> <!-- click area -->
+                        <div class="topBun"></div>
+                        <div class="patty"></div>
+                        <div class="temp"></div>
+                        <div class="bottomBun"></div> 
+                    </div>
+                    <ul class="subNavMobile hide"> 
+                        <li><a href="#"><i class="fa-solid fa-house"></i> Home</a></li>
+                        <li class="products"><a>Categories   <i class="fa-solid fa-arrow-down"></i></a>
+                            <ul class="product">
+                                <li><a href="#">Product 1</a></li>
+                                <li><a href="#">Product 2</a></li>
+                                <li><a href="#">Product 3</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Contact</a></li>
                     </ul>
-                </li>
-                <li><a href="">Contact</a></li>
-            </ul>
+                </div> 
+                <div class="smallGlass">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    
+                </div>
+                
+            </div>
         </nav>
     </header>
     <section class="breakNews flex align_start">
@@ -132,11 +142,11 @@
                 <h3>Readers throughout opearating years</h3>
             </div>
             <div>
-                <div class="number" data="151" data-unit="K+">0</div>
+                <div class="number" data="155" data-unit="K+">0</div>
                 <h3>Books from thousands of famous authors</h3>
             </div>
             <div>
-                <div class="number" data="1123" data-unit="">0</div>
+                <div class="number" data="1234" data-unit="">0</div>
                 <h3>Online subscribers following newest E-books now</h3>
             </div>
         </div>

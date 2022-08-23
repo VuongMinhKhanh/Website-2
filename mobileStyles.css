@@ -10,62 +10,78 @@ html, body {
 :root {
     --bunWidth: 1.5rem;
     --touchButton: .4s;
+    --bunColor: blue;
 }
 /* Header */
 nav {
     box-shadow: none;
-}
-
-nav > ul{
-    display: none !important;
-    flex-direction: column;
-}
-nav .flex > li{
-    font-size: 1.1rem;
+    margin: 0;
 }
 
 .logo {
     width: 80%;
 }
 
-/* hamburger bun */
-.burger-icon {
-    display: block;
-    position: absolute;
-    top: -2.1rem;
-    left: 1.8%;
-    width: var(--bunWidth);
-    height: var(--bunWidth);
-    z-index: 100;
+.navPC{
+    display: none !important;
+    flex-direction: column;
 }
 
-.burger-icon div {
-    height: 2px;
-    background-color: blue;
-    margin: calc(var(--bunWidth) / 4) 0;
-    border-radius: 20px;
-    transition: var(--touchButton);
-    z-index: 100;
-}
-
-.topBun {
-    width: 50%;
-}
-
-.bottomBun {
-    margin-left: 50% !important;
-    width: 50%;
-}
-
-.smallGlass {
-    position: absolute; 
-    top: -1.9rem;
-    right: 1.8%;
-    display: block !important;
+nav .flex > li{
+    font-size: 1.1rem;
 }
 
 /* nav for mobile */
 .navMobile {
+    display: flex;
+    padding: 0 2.5%;
+    margin: 0;
+}
+
+/* https://codepen.io/ainalem/pen/OJWQbor?editors=1000 */
+.burger-icon {
+    display: block;
+    width: var(--bunWidth);
+    height: var(--bunWidth);
+}
+
+.topBun, .patty, .temp {
+    height: 3px;
+    background-color: var(--bunColor);
+    margin: calc(var(--bunWidth) / 4) 0;
+    transition: var(--touchButton);
+    z-index: 1001;
+}
+
+.topBun {
+    margin-top: 0;
+}
+
+.temp {
+    background: none;
+}
+.bottomBun {
+    display: block;
+    clip-path: polygon(2.5% 14.1%, 10.1% 14.1%, 10.1% 14.6%, 2.5% 14.6%);
+    z-index: 100; 
+    position: absolute;
+    top: 0;
+    left: 0 !important;
+    background-color: blue;
+    width: 100vw;
+    height: 100vh;
+}
+
+.smallGlass {
+    display: block !important;
+    width: fit-content;
+}
+
+header .search {
+    top: 17.5%;
+}
+
+.subNavMobile {
     display: flex;
     top: 20%;
     right: 25%;
@@ -75,28 +91,49 @@ nav .flex > li{
     align-items: center;
     justify-content: flex-start;
     position: fixed;
-    background-image: linear-gradient(to top right, black, gray);
-    transition: var(--touchButton);
-    transform: scale(0);
-    opacity: 0;
+    /* background-image: linear-gradient(to top right, black, gray); */
+    /* transform: scale(0);
+    opacity: 0; */
     width: 50%;
     padding: 0;
-    z-index: 3;
+    z-index: 300;
     text-align: center;
 }
 
-.navMobile li a {
-    padding: 10px;
+.subNavMobile li a {
+    font-size: 1.5rem;
+    padding: 1rem;
     display: block;
 }
 
-.products:hover .product{
-    display: block;
+.arrowRotate {
+    transform: scaleY(-1);
 }
 
 .product{
+    display: none;
     text-align: center;
     position: relative;
+    z-index: 1;
+    width: 9rem;
+    padding: 0px;
+}
+
+.slideUpProduct {
+    animation: slideUpProduct 0.25s ease-in backwards;
+}
+@keyframes slideUpProduct {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
+.arrowRotate {
+    transform: scaleY(-1);
 }
 
 /* breakNews */
@@ -223,4 +260,18 @@ nav .flex > li{
 
 .infos input {
     width: 95%;
+}
+
+/* CSS for JS */
+.clickBurger {
+    position: fixed;
+}
+
+.clickBottomBun {
+    clip-path: polygon(101% -1%, 101% 101%, -1% 101%, -1% -1%);
+    background-color: pink;
+}
+
+.displayProduct {
+    display: block !important;
 }
