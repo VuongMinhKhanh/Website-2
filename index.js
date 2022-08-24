@@ -172,8 +172,11 @@ Check out everyday for more exclusive news.`)
     
     // Open responsive menu
     $(".burger").click(function() {
-        $(".expandBun").toggleClass("clickExpandBun")
         $(this).toggleClass("clickBurger")
+        $(".topBun").toggleClass("rollTopBun")
+        $(".patty").toggleClass("rollPatty")
+        $(".bottomBun").toggleClass("rollBottomBun")
+        $(".expandBun").toggleClass("clickExpandBun")
         //$(this).children("div").toggleClass("clickBurger")
         $(".subNavMobile").toggleClass("show")
     })

@@ -59,22 +59,31 @@ nav .flex > li{
     border-radius: 1rem;
 }
 
-.topBun {
+.rollTopBun {
     margin-top: 0;
+    transform: rotate(-45deg);
 }
 
+.rollPatty {
+    transform: translateY(-8.5px) rotate(45deg);
+}
+
+.rollBottomBun {
+    transform: translateY(300%) rotate(270deg);
+    opacity: 0;
+    background: pink;
+}
 .expandBun {
     display: block;
     /* clip-path: polygon(2.5% 14.1%, 10.1% 14.1%, 10.1% 14.6%, 2.5% 14.6%); */
     clip-path: polygon(45% 45%, 55% 45%, 55% 46%, 45% 46%);
     z-index: 500; 
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0 !important;
     background-color: transparent;
     width: 100vw;
     height: 100vh;
-    position: fixed;
 }
 
 .smallGlass {
