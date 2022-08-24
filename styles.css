@@ -184,13 +184,13 @@ header .search {
 
 .suggest {
     padding: 0;
-    backdrop-filter: blur(1.5px);
-    border-radius: 1rem;
+    backdrop-filter: blur(2px);
+    border-radius: 0.5rem;
 }
 
 .suggest li a{
     font-size: 1.1rem;
-    color: black;
+    color: rgb(25, 194, 3);
     font-style: italic;
 }
 

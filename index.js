@@ -214,11 +214,12 @@ Check out everyday for more exclusive news.`)
 
     // Reset setInterval when clicking ".button"
     // Press a keyword to find relevant books
-    $(".search").keyup(function() {
+    $(".search").on("input",function() { 
         let text = $(this).val()
         let h = ''
         for (let s of suggestedBooks)
         {
+            alert(s.toLowerCase().indexOf(text) >= 0)
             if (s.toLowerCase().indexOf(text) >= 0)
             {
                 let recommend = `<li><a href="javascript:;">${s}</a></li>`
@@ -232,8 +233,7 @@ Check out everyday for more exclusive news.`)
         $(".search").val($(this).text())
     })
 
-    $(".suggest").on("mouseenter, touchmove", "a", function() {
-        console.log($(this))
+    $(".suggest").on("mouseenter touchmove", "a", function() {
         let idxOfImg = suggestedBooks.indexOf($(this).text())
         let imgSrc = `<img src="images/idNumber${idxOfImg + 1}.jpg" alt="${this}">`
         let image = $(".image")
