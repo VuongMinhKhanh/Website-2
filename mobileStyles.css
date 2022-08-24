@@ -36,6 +36,7 @@ nav .flex > li{
     display: flex;
     padding: 0 2.5%;
     margin: 0;
+    position: relative;
 }
 
 /* https://codepen.io/ainalem/pen/OJWQbor?editors=1000 */
@@ -91,10 +92,6 @@ nav .flex > li{
     width: fit-content;
 }
 
-header .search {
-    top: 17.5%;
-}
-
 .subNavMobile {
     display: flex;
     top: 10%;
@@ -128,6 +125,11 @@ header .search {
     z-index: 1;
     width: 100%;
     padding: 0;
+}
+
+.product a {
+    color: orangered;
+    font-size: 1.3rem !important;
 }
 
 .slideUpProduct {

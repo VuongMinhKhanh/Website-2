@@ -19,6 +19,7 @@ body {
     --fluctuate: 1.25s;
     --fallWords: 0.2s;
     --smallBounceStarts: calc(var(--bounceUp) + var(--fallDown) + var(--fluctuate)* 75 / 100 + var(--fallWords)) ;
+    --boxShadow: 3px 3px 3px 3px rgb(151, 147, 147);
 }
 
 .hide {
@@ -34,6 +35,10 @@ body {
 a {
     color: crimson;
     cursor: pointer;
+}
+
+img {
+    box-shadow: var(--boxShadow);
 }
 
 body {
@@ -69,7 +74,7 @@ body {
 }
 
 .navPC {
-    box-shadow: 3px 3px 3px 3px rgb(151, 147, 147);
+    box-shadow: var(--boxShadow);
     max-height: 10vh;
     margin: 2rem 0.5rem;
 }
@@ -162,6 +167,43 @@ header .search {
     transition: var(--toggle);
 }
 
+/* Find books */
+.findBooks {
+    position: fixed;
+    height: 2rem;
+    width: 100%;
+    z-index: 500;
+}
+
+.showBooks {
+    position: absolute;
+    top: 90%;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.suggest {
+    padding: 0;
+    backdrop-filter: blur(1.5px);
+    border-radius: 1rem;
+}
+
+.suggest li a{
+    font-size: 1.1rem;
+    color: black;
+    font-style: italic;
+}
+
+.image {
+    display: block;
+    width: 35%;
+    height: 100%;
+    z-index: 400;
+}
+
+.image img {
+    width: 100%;
+}
 
 .navMobile {
     display: none;
@@ -171,7 +213,7 @@ header .search {
 section {
     padding: 1rem;
     margin: 1rem;
-    box-shadow: 3px 3px 3px 3px rgb(151, 147, 147);
+    box-shadow: var(--boxShadow);
 }
 
 .announce {
@@ -437,6 +479,7 @@ article .content:hover h3 a::after {
 .library img {
     width: 100%;
     z-index: 1;
+    box-shadow: none;
 }
 
 .library .Pics div:first-child:hover .frame{
@@ -599,9 +642,6 @@ article .content:hover h3 a::after {
 /* Stat */
 section.stat{
     justify-content: space-evenly;
-    /* padding: 1rem;
-    margin: 1rem 0;
-    box-shadow: none; */
     height: 90vh;
     background-size: cover;
     background-repeat: no-repeat;

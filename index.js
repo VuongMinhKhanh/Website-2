@@ -5,6 +5,9 @@ var autoSlide, slideTime = 3000;
 var revealPoint = 150;
 
 var count = 0, delay = 50, times = 1000;
+
+var suggestedBooks = ["How to Win friends and Influence people", "Les Misérables", "Hóa Học 12", "Hóa Học 12 (Nâng Cao)"]
+
 function counter(s) {
     let countLimit = s.getAttribute("data")
     if (count <= countLimit)
@@ -68,13 +71,30 @@ $(document).ready(function(){
 
     // Click magnifier glass to open search bar, click outside to close it
     $(document).click(function(e) {  
-        if ($(e.target).closest($(".search")).length || $(e.target).closest($("i.fa-solid.fa-magnifying-glass")).length) {
-            $(".search").removeClass("hide")
-            $(".search").addClass("show")
+        let search = $(".search")
+            suggest = $(".suggest")
+        if ($(e.target).closest($(".search, i.fa-solid.fa-magnifying-glass, .suggest")).length) {
+            search.removeClass("hide")
+            search.addClass("show")
         }//closest(selector) là lấy những element tính từ selector trở vào trong
         else 
-            $(".search").removeClass("show")
-            $(".search").addClass("hide")
+            search.removeClass("show")
+            search.addClass("hide")
+            suggest.empty()
+            $(".image").empty()
+
+        search.keyup(function(e) {
+        if (e.which == 13) //which là unicode, 13 là enter => nếu gõ enter thì xử lý
+        {
+            search.removeClass("show")
+            search.addClass("hide")
+            search.val("")
+            setTimeout(function() {
+                suggest.empty()
+                $(".image").empty()
+            }, 0)
+        }
+        })
     })
 
     /* 
@@ -194,6 +214,34 @@ Check out everyday for more exclusive news.`)
 
     // Reset setInterval when clicking ".button"
     // Press a keyword to find relevant books
+    $(".search").keyup(function() {
+        let text = $(this).val()
+        let h = ''
+        for (let s of suggestedBooks)
+        {
+            if (s.toLowerCase().indexOf(text) >= 0)
+            {
+                let recommend = `<li><a href="javascript:;">${s}</a></li>`
+                h += recommend
+            }
+            $(".suggest").html(h)
+        }
+    })
+
+    $(".suggest").on("click", "a", function() {
+        $(".search").val($(this).text())
+    })
+
+    $(".suggest").on("mouseenter, touchmove", "a", function() {
+        console.log($(this))
+        let idxOfImg = suggestedBooks.indexOf($(this).text())
+        let imgSrc = `<img src="images/idNumber${idxOfImg + 1}.jpg" alt="${this}">`
+        let image = $(".image")
+        image.html(imgSrc)
+        $(this).mouseleave(function() {
+            image.empty()
+        })
+    })
     // Increase countering time when getting close to the data
     /*if (counter >= countLimit * 80 / 100)
         delay += times //still wrong*/
