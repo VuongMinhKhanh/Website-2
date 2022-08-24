@@ -10,7 +10,7 @@ html, body {
 :root {
     --bunWidth: 1.5rem;
     --touchButton: .4s;
-    --bunColor: blue;
+    --bunColor: rgb(114, 112, 112);
 }
 /* Header */
 nav {
@@ -43,33 +43,38 @@ nav .flex > li{
     display: block;
     width: var(--bunWidth);
     height: var(--bunWidth);
+    
 }
 
-.topBun, .patty, .temp {
+.burger {
+    z-index: 1001;
+}
+
+.topBun, .patty, .bottomBun {
     height: 3px;
+    width: var(--bunWidth);
     background-color: var(--bunColor);
     margin: calc(var(--bunWidth) / 4) 0;
     transition: var(--touchButton);
-    z-index: 1001;
+    border-radius: 1rem;
 }
 
 .topBun {
     margin-top: 0;
 }
 
-.temp {
-    background: none;
-}
-.bottomBun {
+.expandBun {
     display: block;
-    clip-path: polygon(2.5% 14.1%, 10.1% 14.1%, 10.1% 14.6%, 2.5% 14.6%);
-    z-index: 100; 
+    /* clip-path: polygon(2.5% 14.1%, 10.1% 14.1%, 10.1% 14.6%, 2.5% 14.6%); */
+    clip-path: polygon(45% 45%, 55% 45%, 55% 46%, 45% 46%);
+    z-index: 500; 
     position: absolute;
     top: 0;
     left: 0 !important;
-    background-color: blue;
+    background-color: transparent;
     width: 100vw;
     height: 100vh;
+    position: fixed;
 }
 
 .smallGlass {
@@ -83,7 +88,7 @@ header .search {
 
 .subNavMobile {
     display: flex;
-    top: 20%;
+    top: 10%;
     right: 25%;
     left: 25%;
     border-radius: 1rem;
@@ -91,12 +96,9 @@ header .search {
     align-items: center;
     justify-content: flex-start;
     position: fixed;
-    /* background-image: linear-gradient(to top right, black, gray); */
-    /* transform: scale(0);
-    opacity: 0; */
     width: 50%;
     padding: 0;
-    z-index: 300;
+    z-index: 1100;
     text-align: center;
 }
 
@@ -115,13 +117,18 @@ header .search {
     text-align: center;
     position: relative;
     z-index: 1;
-    width: 9rem;
-    padding: 0px;
+    width: 100%;
+    padding: 0;
 }
 
 .slideUpProduct {
     animation: slideUpProduct 0.25s ease-in backwards;
 }
+
+.slideDownProduct {
+    animation: slideUpProduct 0.25s ease-in forwards reverse;
+}
+
 @keyframes slideUpProduct {
     0% {
         transform: translateY(100%);
@@ -266,8 +273,11 @@ header .search {
 .clickBurger {
     position: fixed;
 }
+.clickBurger.burger {
+    transform: translateY(-150%);
 
-.clickBottomBun {
+}
+.clickExpandBun {
     clip-path: polygon(101% -1%, 101% 101%, -1% 101%, -1% -1%);
     background-color: pink;
 }

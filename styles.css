@@ -33,6 +33,7 @@ body {
 
 a {
     color: crimson;
+    cursor: pointer;
 }
 
 body {
@@ -67,13 +68,13 @@ body {
     justify-content: space-between !important;
 }
 
-nav {
+.navPC {
     box-shadow: 3px 3px 3px 3px rgb(151, 147, 147);
     max-height: 10vh;
     margin: 2rem 0.5rem;
 }
 
-nav li a {
+.navPCv li a {
     padding: 0.7rem;
 }
 
@@ -91,11 +92,48 @@ nav li a {
     position: relative;
 }
 
-nav .flex > li{
+.navPC li a:hover {
+    transform: scale(1.1);
+}
+
+.product {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+}
+
+.slideUpProduct {
+    animation: slideUpProduct 0.25s ease-in backwards;
+}
+
+.slideDownProduct {
+    animation: slideUpProduct 0.5s ease-in forwards reverse;
+}
+
+@keyframes slideUpProduct {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
+
+.displayProduct {
+    display: block !important;
+}
+
+.navPC .flex > li{
     margin: 0 0.7rem;
 }
 
-nav .flex > li a {
+.navPC .flex > li a {
     text-align: center;
     padding: 0.4rem 0;
     display: block;
@@ -124,17 +162,8 @@ header .search {
     transition: var(--toggle);
 }
 
-.smallGlass {
-    display: none;
-}
-@media screen and (min-width: 501px) {
-    .products:hover .product{
-        display: block !important;
-        animation: Move 0.4s linear;
-    }
-}
 
-.burger-icon, .navMobile, .subNavMobile {
+.navMobile {
     display: none;
 }
 

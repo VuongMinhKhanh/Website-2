@@ -26,10 +26,7 @@ function startCounting() {
 }
 
 function oneByOne (selector, Class, time) {
-    /*
-    time : sum time to run parallelly with other animations
-    length : numbers of HTMLCollection
-    */
+    //time : sum time to run parallelly with other animations
     var delay = 0;
     for (let s of selector) 
     {
@@ -40,14 +37,34 @@ function oneByOne (selector, Class, time) {
     }
 }
 
+function slowRenderNav (products, display, slideDown) {
+    $this = products
+    if ($this.children("ul").hasClass(`${display}`))
+    {
+        $this.children("ul").addClass(`${slideDown}`)
+        setTimeout(function() {
+            $this.children("ul").removeClass(`${display}`)
+            //trong setTimeout ko sử dụng được this => gọi trực tiếp hoặc gán vào 1 biến $this = $(this)
+        }, 0)
+        // sử dụng setTimeout để tách 2 class addClass("slideDownProduct") và removeClass("displayProduct") để cả 2 chạy riêng biệt 
+    }
+    else 
+        $this.children("ul").removeClass(`${slideDown}`).addClass(`${display}`)
+}
+
 $(document).ready(function(){ 
-    // Render respectively product > li
+    // Render respectively .product > li
     $(".subNavMobile .products > a").click(function() {
         let product = $(".subNavMobile .product > li")
         oneByOne(product, "slideUpProduct", 500)
         $(this).children("i").toggleClass("arrowRotate")
     })
-    
+
+    $(".navPC .products > a").hover(function() {
+        let product = $(".navPC .product > li")
+        oneByOne(product, "slideUpProduct", 500)
+        $(this).children("i").toggleClass("arrowRotate")
+    })
 
     // Click magnifier glass to open search bar, click outside to close it
     $(document).click(function(e) {  
@@ -155,14 +172,21 @@ Check out everyday for more exclusive news.`)
     
     // Open responsive menu
     $(".burger").click(function() {
-        $(".bottomBun").toggleClass("clickBottomBun")
-        $(this).children("div").toggleClass("clickBurger")
+        $(".expandBun").toggleClass("clickExpandBun")
+        $(this).toggleClass("clickBurger")
+        //$(this).children("div").toggleClass("clickBurger")
         $(".subNavMobile").toggleClass("show")
     })
 
     // Toggle .product
-    $(".products").click(function() {
-        $(this).children("ul").toggleClass("displayProduct")
+    $(".navMobile .products").click(function() {
+        $this = $(".navMobile .products")
+       slowRenderNav($this, "displayProduct", "slideDownProduct")
+    })
+
+    $(".navPC .products").hover(function() {
+        $this = $(".navPC .products")
+        slowRenderNav($this, "displayProduct", "slideDownProduct")
     })
 
     // Reset setInterval when clicking ".button"
